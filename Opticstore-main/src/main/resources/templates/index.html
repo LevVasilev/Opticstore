@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optic Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body id="home" data-bs-spy="scroll" data-bs-target=".navbar">
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Optic Store</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Товары</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a sec:authorize="isAuthenticated()" sec:authentication="principal.username" class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul sec:authorize="isAuthenticated()" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">Все заказы</a></li>
+                        <li><a class="dropdown-item" id="btnorder" href="#" sec:authorize="hasRole('ROLE_USER')" th:href="@{/userRecords}">Корзина</a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/logout}">Выйти</a></li>
+                    </ul>
+                </li>
+                <a href="#" sec:authorize="!isAuthenticated()" class="btn btn-entrance" th:href="@{/login}">Войти</a>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<!--Navbar-->
+
+<!--Start-->
+<section id="start" class="startSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="display-5">
+                    ОЧЕВИДНЫЙ ВЫБОР
+                </h1>
+                <p class="startText">
+                    Optic Store лучший магазин для покупки очков и контактных линз. Вы можете довериться нашему опыту!
+                </p>
+                <a id="orderbuttonn" href="#" class="btn btn-brand" th:href="@{/record}">Заказать</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Start-->
+<!--Services-->
+<section class="servicesSection" id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 intro">
+                <h1>Наши очки и линзы</h1>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-lg-4 col-md-12">
+                <img class="sevicesImg" src="img/glasses man.jpg" alt="">
+                <h3 class="serviceTitle">Мужские</h3>
+                <p class="price">---2999₽---</p>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <img class="sevicesImg" src="img/glasses-woman.jpg" alt="">
+                <h3 class="serviceTitle">Женские</h3>
+                <p class="price">---2989₽---</p>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <img class="sevicesImg" src="img/glasses-child.jpg" alt="">
+                <h3 class="serviceTitle">Детские</h3>
+                <p class="price">---1899₽---</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Services-->
+
+<!--Section1-->
+<section class="section1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 intro">
+                <div class="line"></div>
+                <h1 id="headerfortest">Нам доверяют</h1>
+                <h1 class="clientCounts">1500+</h1>
+                <h1>Клиентов в месяц</h1>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section1-->
+
+
+
+
+<section class="footer">
+    <a href="#" class="btn btn-brand" th:href="@{/record}">Записаться</a>
+    <h7 style="margin-top: 20px;">© 2015-2023 Optice Store</h7>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
